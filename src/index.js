@@ -1,2 +1,4 @@
 import './styles.css';
-import './js/templating';
+import './JS/templating';
+import './JS/theme';
+import './JS/localStorage';
