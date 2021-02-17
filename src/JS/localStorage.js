@@ -1,35 +1,29 @@
-// Принимает ключ `key` по которому будет произведена выборка.
-const load = key => {
-    try {
-      const serializedState = localStorage.getItem(key);
-  
-      return serializedState === null ? undefined : JSON.parse(serializedState);
-    } catch (err) {
-      console.error('Get state error: ', err);
-    }
-  };
-  
-  // Принимает ключ `key` и значение `value`.
-  function save(key, value) {
-    try {
-        const serializedState = JSON.stringify(value);
-        localStorage.setItem(key, serializedState);
-    } catch (err) {
-        console.error('Set state error: ', err);
-    }
-}
-  
-  // Чистит хранилище по ключу `key`.
-  const remove = (key) => {
-      try {
-          localStorage.removeItem(key);
-      } catch (err) {
-        console.error('Remove state error: ', err);
-      }
+const Theme = {
+  LIGHT: 'light-theme',
+  DARK: 'dark-theme',
+};
+const bodyRef = document.querySelector('body');
+const switchRef = document.querySelector('#theme-switch-toggle');
+
+switchRef.addEventListener('change', handleCheckbox);
+
+reloadTheme();
+
+function handleCheckbox() {
+  if (switchRef.checked) {
+    bodyRef.classList.remove(Theme.LIGHT);
+    bodyRef.classList.add(Theme.DARK);
+    localStorage.setItem('theme', Theme.DARK);
+  } else {
+    bodyRef.classList.remove(Theme.DARK);
+    bodyRef.classList.add(Theme.LIGHT);
+    localStorage.setItem('theme', Theme.LIGHT);
   }
-  
-  export default {
-    load,
-    save,
-    remove
-  };
+}
+
+function reloadTheme() {
+  if (localStorage.getItem('theme') === Theme.DARK) {
+    bodyRef.classList.add(Theme.DARK);
+    switchRef.checked = true;
+  }
+}
