@@ -10,14 +10,14 @@ const load = key => {
   };
   
   // Принимает ключ `key` и значение `value`.
-  const save = (key, value) => {
+  function save(key, value) {
     try {
-      const serializedState = JSON.stringify(value);
-      localStorage.setItem(key, serializedState);
+        const serializedState = JSON.stringify(value);
+        localStorage.setItem(key, serializedState);
     } catch (err) {
-      console.error('Set state error: ', err);
+        console.error('Set state error: ', err);
     }
-  };
+}
   
   // Чистит хранилище по ключу `key`.
   const remove = (key) => {

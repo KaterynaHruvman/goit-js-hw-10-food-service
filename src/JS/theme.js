@@ -1,9 +1,9 @@
 import localStorage from './localStorage';
 const bodyRef = document.querySelector('body');
-const btnRef = document.querySelector('.js-switch-input');
+const btnRef = document.querySelector('.theme-switch-toggle');
 
 btnRef.addEventListener('change', () => {
-  bodyRef.className = '';
+  bodyRef.className = 'theme-switch-toggle';
   bodyRef.classList = btnRef.checked ? 'dark-theme' : 'light-theme';
   localStorage.save('theme', bodyRef.className);
   const typeOfTheme = bodyRef.className;
